@@ -1,0 +1,30 @@
+#!/bin/bash
+
+osv=darwin
+
+if [ "start" = ${1} ];then
+    sh ./bin/start.sh
+elif [ "go" = ${1} ];then
+    sh ./bin/run.sh
+elif [ "clear" = ${1} ];then
+    sh ./bin/clear.sh
+elif [ "stop" = ${1} ];then
+  if [ -z ${2} ];then
+      sh ./bin/kill.sh
+  else
+      sh ./bin/kill.sh ${2}
+  fi
+elif [ "restart" = ${1} ];then
+  sh ./bin/kill.sh && sh ./bin/start.sh
+elif [ "release" = ${1} ];then
+  if [ -z ${3} ];then
+    osv=darwin
+  else
+    osv=${3}
+  fi
+  GOOS=${osv} go build main.go
+  mv ./main pkg/
+  cp -r pkg sumeru-${osv}-${2}-beta
+  tar -cvzf release/sumeru-${osv}-${2}-beta.tar.gz ./sumeru-${osv}-${2}-beta
+  rm -rf sumeru-${osv}-${2}-beta
+fi

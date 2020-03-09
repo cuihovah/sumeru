@@ -1,0 +1,11 @@
+#!/bin/bash
+
+./main http -c config/http-8871.ini &
+./main http -c config/http-8872.ini &
+./main http -c config/http-8873.ini &
+./main http -c config/http-8874.ini &
+./main http -c config/http-8875.ini &
+./main http -c config/http-8876.ini &
+./main http -c config/http-8877.ini &
+./main http -c config/http-8878.ini &
+./main http -c config/http-8879.ini &

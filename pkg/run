@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "start" = ${1} ];then
+    sh ./bin/run.sh
+elif [ "clear" = ${1} ];then
+    sh ./bin/clear.sh
+elif [ "stop" = ${1} ];then
+  if [ -z ${2} ];then
+      sh ./bin/kill.sh
+  else
+      sh ./bin/kill.sh ${2}
+  fi
+elif [ "restart" = ${1} ];then
+  sh ./bin/kill.sh && sh ./bin/run.sh
+fi
